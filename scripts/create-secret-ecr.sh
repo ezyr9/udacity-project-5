@@ -8,4 +8,4 @@ set -e
 #     --kubeconfig ~/.kube/config
 
 
-/usr/local/bin/kubectl get all
+/usr/local/bin/kubectl get all --kubeconfig /var/lib/jenkins/.kube/config
