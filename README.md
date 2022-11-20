@@ -21,8 +21,29 @@ Once you have completed your Continuous Integration you will set up Continuous D
 - Deploying these Docker container(s) to a small Kubernetes cluster. For your Kubernetes cluster you can either use AWS Kubernetes as a Service, or build your own Kubernetes cluster. To deploy your Kubernetes cluster, use either Ansible or Cloudformation. Preferably, run these from within Jenkins or Circle CI as an independent pipeline.
 
 
-## Note
-I will note later ... 
+## Explaination on how to deployed the EKS cluster by using CloudFormation
+
+I have used the  [Jenekinfile.init](https://github.com/ezyr9/udacity-project-5/blob/main/Jenkinsfile.init) to create the infrastructure:
+bash ./scripts/cfn/cfn-deploy-network.sh:
+```
+/usr/local/bin/aws cloudformation deploy \
+        --template-file cfn/network.yaml \
+        --region ap-southeast-1 \
+        --stack-name "udacity-network" 
+```
+-> This will deploy a cloudformation stack which will have a VPC with necessary network resource (subnet, routetable, nat, igw, etc)
+[template-file](https://github.com/ezyr9/udacity-project-5/blob/main/cfn/network.yaml)
+
+bash ./scripts/cfn/cfn-deploy-eks.sh:
+```
+/usr/local/bin/aws cloudformation deploy \
+        --template-file cfn/eks.yaml \
+        --region ap-southeast-1 \
+        --stack-name "udacity-eks"
+```
+-> This will deploy a cloudformation stack which will have EKS cluster, EKS Nodegroup (On Demand), EKS AddOn, Security Group
+[template-file](https://github.com/ezyr9/udacity-project-5/blob/main/cfn/eks.yaml)
+* Note that, I have created the 2 role ([EKSIAMRole](https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html) & [EKSNodegroupIAMRole](https://docs.aws.amazon.com/eks/latest/userguide/create-node-role.html)) manually
 
 ## File Structure
 directory:
