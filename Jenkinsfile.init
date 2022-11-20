@@ -1,10 +1,10 @@
 pipeline {
     agent any
-    environment {
-        AWS_ACCESS_KEY_ID = credentials('jenkins-aws-secret-key-id')
-        AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
-        AWS_REGION = "ap-southeast-1"
-    }
+    // environment {
+    //     AWS_ACCESS_KEY_ID = credentials('jenkins-aws-secret-key-id')
+    //     AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
+    //     AWS_REGION = "ap-southeast-1"
+    // }
     stages {
         // stage("INIT NETWORK") {
         //     steps   {
@@ -18,8 +18,11 @@ pipeline {
         // }
         stage("CREATE SECRET ECR") {
             steps   {
-                sh "bash ./scripts/update-eks-config.sh"
-                sh "bash ./scripts/create-secret-ecr.sh"
+                withAWS(credentials:'awscred') {
+                    sh "bash ./scripts/update-eks-config.sh"
+                    sh "bash ./scripts/create-secret-ecr.sh"
+                }
+                
             }  
         }
     }
