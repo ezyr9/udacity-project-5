@@ -31,8 +31,8 @@ bash ./scripts/cfn/cfn-deploy-network.sh:
         --region ap-southeast-1 \
         --stack-name "udacity-network" 
 ```
--> This will deploy a cloudformation stack which will have a VPC with necessary network resource (subnet, routetable, nat, igw, etc)
-[template-file](https://github.com/ezyr9/udacity-project-5/blob/main/cfn/network.yaml)
+-> This will deploy a cloudformation stack ([Link](https://github.com/ezyr9/udacity-project-5/blob/main/cfn/network.yaml)) which will have a VPC with necessary network resource (subnet, routetable, nat, igw, etc)
+
 
 bash ./scripts/cfn/cfn-deploy-eks.sh:
 ```
@@ -41,8 +41,8 @@ bash ./scripts/cfn/cfn-deploy-eks.sh:
         --region ap-southeast-1 \
         --stack-name "udacity-eks"
 ```
--> This will deploy a cloudformation stack which will have EKS cluster, EKS Nodegroup (On Demand), EKS AddOn, Security Group
-[template-file](https://github.com/ezyr9/udacity-project-5/blob/main/cfn/eks.yaml)
+-> This will deploy a cloudformation stack ([Link](https://github.com/ezyr9/udacity-project-5/blob/main/cfn/eks.yaml)) which will have EKS cluster, EKS Nodegroup (On Demand), EKS AddOn, Security Group
+
 * Note that, I have created the 2 role ([EKSIAMRole](https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html) & [EKSNodegroupIAMRole](https://docs.aws.amazon.com/eks/latest/userguide/create-node-role.html)) manually
 
 ## File Structure
