@@ -5,4 +5,4 @@ set -e
     --region ap-southeast-1 \
     --name udacity-cluster
 
-sed -e "/command: aws/s?aws?$(which aws)?" -i /var/lib/jenkins/.kube/config
+sed -e "/command: aws/s?aws?/usr/local/bin/aws?" -i /var/lib/jenkins/.kube/config
