@@ -34,7 +34,7 @@ spec:
         app: phuongtd-app
     spec:
       containers:
-      - image: NONEXIST
+      - image: 798426491631.dkr.ecr.ap-southeast-1.amazonaws.com/ecr_phuongtd:NONEXIST
         name: phuongtd-app
         ports:
         - containerPort: 80
