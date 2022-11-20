@@ -26,6 +26,7 @@ pipeline {
             steps   {
                 withAWS(credentials:'aws-cred') {
                     sh "bash ./scripts/update-eks-config.sh"
+                    sh "alias aws=/usr/local/bin/aws"
                     sh "bash ./scripts/create-secret-ecr.sh"
                 }
                 
