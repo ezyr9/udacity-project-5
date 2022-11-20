@@ -23,8 +23,9 @@ Once you have completed your Continuous Integration you will set up Continuous D
 
 ## Explaination on how to deployed the EKS cluster by using CloudFormation
 
-I have used the  [Jenekinfile.init](https://github.com/ezyr9/udacity-project-5/blob/main/Jenkinsfile.init) to create the infrastructure:
-bash ./scripts/cfn/cfn-deploy-network.sh:
+I have used the  [Jenekinfile.init](https://github.com/ezyr9/udacity-project-5/blob/main/Jenkinsfile.init) to create the infrastructure
+
+* bash ./scripts/cfn/cfn-deploy-network.sh:
 ```
 /usr/local/bin/aws cloudformation deploy \
         --template-file cfn/network.yaml \
@@ -34,7 +35,7 @@ bash ./scripts/cfn/cfn-deploy-network.sh:
 -> This will deploy a cloudformation stack ([Link](https://github.com/ezyr9/udacity-project-5/blob/main/cfn/network.yaml)) which will have a VPC with necessary network resource (subnet, routetable, nat, igw, etc)
 
 
-bash ./scripts/cfn/cfn-deploy-eks.sh:
+* bash ./scripts/cfn/cfn-deploy-eks.sh:
 ```
 /usr/local/bin/aws cloudformation deploy \
         --template-file cfn/eks.yaml \
