@@ -1,17 +1,11 @@
 pipeline {
     agent any
-    // environment {
-    //     AWS_ACCESS_KEY_ID = credentials('jenkins-aws-secret-key-id')
-    //     AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
-    //     AWS_REGION = "ap-southeast-1"
-    // }
     stages {
         stage("INIT NETWORK") {
             steps   {
                 withAWS(credentials:'aws-cred') {
                     sh "bash ./scripts/cfn/cfn-deploy-network.sh"
                 }
-                // sh "bash ./scripts/cfn/cfn-deploy-network.sh"
             }  
         }
         stage("INIT EKS") {
@@ -19,14 +13,12 @@ pipeline {
                 withAWS(credentials:'aws-cred') {
                     sh "bash ./scripts/cfn/cfn-deploy-eks.sh"                
                 }
-                // sh "bash ./scripts/cfn/cfn-deploy-eks.sh"
             }  
         }
         stage("CREATE SECRET ECR") {
             steps   {
                 withAWS(credentials:'aws-cred') {
-                    // sh "bash ./scripts/update-eks-config.sh"
-                    // sh "sed -e '/command: aws/s?aws?$(which aws)?' -i ~/.kube/config "
+                    sh "bash ./scripts/update-eks-config.sh"
                     sh "bash ./scripts/create-secret-ecr.sh"
                 }
                 
