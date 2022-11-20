@@ -1,11 +1,10 @@
 #!/bin/bash
 set -e
 
-# /usr/local/bin/kubectl create secret docker-registry phuongtd-secret-ecr \
-#     --docker-server=https://798426491631.dkr.ecr.ap-southeast-1.amazonaws.com \
-#     --docker-username=AWS \
-#     --docker-password=$(/usr/local/bin/aws ecr get-login-password --region ap-southeast-1) \
-#     --kubeconfig ~/.kube/config
+/usr/local/bin/kubectl create secret docker-registry phuongtd-secret-ecr \
+    --docker-server=https://798426491631.dkr.ecr.ap-southeast-1.amazonaws.com \
+    --docker-username=AWS \
+    --docker-password=$(/usr/local/bin/aws ecr get-login-password --region ap-southeast-1) \
 
 
-/usr/local/bin/kubectl get all --kubeconfig /var/lib/jenkins/.kube/config
+/usr/local/bin/kubectl get all 
