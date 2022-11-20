@@ -21,8 +21,8 @@ Once you have completed your Continuous Integration you will set up Continuous D
 - Deploying these Docker container(s) to a small Kubernetes cluster. For your Kubernetes cluster you can either use AWS Kubernetes as a Service, or build your own Kubernetes cluster. To deploy your Kubernetes cluster, use either Ansible or Cloudformation. Preferably, run these from within Jenkins or Circle CI as an independent pipeline.
 
 
-## More
-
+## Note
+I will note later ... 
 
 ## File Structure
 directory:
