@@ -22,15 +22,15 @@ pipeline {
                 // sh "bash ./scripts/cfn/cfn-deploy-eks.sh"
             }  
         }
-        // stage("CREATE SECRET ECR") {
-        //     steps   {
-        //         withAWS(credentials:'aws-cred') {
-        //             sh "bash ./scripts/update-eks-config.sh"
-        //             sh "bash ./scripts/create-secret-ecr.sh"
-        //         }
+        stage("CREATE SECRET ECR") {
+            steps   {
+                withAWS(credentials:'aws-cred') {
+                    sh "bash ./scripts/update-eks-config.sh"
+                    sh "bash ./scripts/create-secret-ecr.sh"
+                }
                 
-        //     }  
-        // }
+            }  
+        }
     }
 }
 
