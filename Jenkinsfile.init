@@ -6,25 +6,31 @@ pipeline {
     //     AWS_REGION = "ap-southeast-1"
     // }
     stages {
-        // stage("INIT NETWORK") {
-        //     steps   {
-        //         sh "bash ./scripts/cfn/cfn-deploy-network.sh"
-        //     }  
-        // }
-        // stage("INIT EKS") {
-        //     steps   {
-        //         sh "bash ./scripts/cfn/cfn-deploy-eks.sh"
-        //     }  
-        // }
-        stage("CREATE SECRET ECR") {
+        stage("INIT NETWORK") {
             steps   {
                 withAWS(credentials:'aws-cred') {
-                    sh "bash ./scripts/update-eks-config.sh"
-                    sh "bash ./scripts/create-secret-ecr.sh"
+                    sh "bash ./scripts/cfn/cfn-deploy-network.sh"
                 }
-                
+                // sh "bash ./scripts/cfn/cfn-deploy-network.sh"
             }  
         }
+        stage("INIT EKS") {
+            steps   {
+                withAWS(credentials:'aws-cred') {
+                    sh "bash ./scripts/cfn/cfn-deploy-eks.sh"                
+                }
+                // sh "bash ./scripts/cfn/cfn-deploy-eks.sh"
+            }  
+        }
+        // stage("CREATE SECRET ECR") {
+        //     steps   {
+        //         withAWS(credentials:'aws-cred') {
+        //             sh "bash ./scripts/update-eks-config.sh"
+        //             sh "bash ./scripts/create-secret-ecr.sh"
+        //         }
+                
+        //     }  
+        // }
     }
 }
 
