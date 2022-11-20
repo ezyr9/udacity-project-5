@@ -1,0 +1,24 @@
+def sourcecode = "https://gitlab.com/trandinhphuongwp/sourcecode"
+pipeline {
+    agent any
+    parameters {
+        string(name: 'BUILD_NUMBER1', defaultValue: '69', description: 'The build number artifact you want to deploy')
+    }
+    // environment {
+    //     AWS_ACCESS_KEY_ID = credentials('jenkins-aws-secret-key-id')
+    //     AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
+    //     AWS_REGION = "ap-southeast-1"
+    // }
+    stages {
+        stage("DEPLOY") {
+            steps   {
+                withAWS(credentials:'aws-cred') {
+                    sh "bash ./scripts/login-ecr.sh"
+                    sh "bash ./scripts/update-eks-config.sh"
+                    sh "bash ./scripts/deploy.sh ${params.BUILD_NUMBER1}" 
+                }
+            }  
+        }
+    }
+}
+
