@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage("LINTING") {
             steps   {
-                sh "/usr/bin/hadolint Dockerfile"
+                sh "/usr/bin/hadolint --ignore DL3006 Dockerfile"
             }  
         }
         stage("BUILD") {
